@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <style>
+        div {
+            background-color: lightgray;
+            height: 20em;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <h1 class="text-center">Beautiful chat</h1>
+    <div class="row justify-content-md-center m-5">
+        <div id="chat" class="row col-md-8"></div>
+        <form action="new-message.php" class="row col-md-8 m-3">
+            <label for="message">Message:</label>
+            <input type="text" id="message" placeholder="say hi!" class="form-control">
+            <input type="submit" id="submit-message" value="send" class="btn btn-primary" />
+        </form>
+    </div>
+    <script>
+        let submitMessage = document.querySelector("#submit-message");
+        submitMessage.addEventListener("click", function(e) {
+            e.preventDefault();
+            let input = document.querySelector("#message");
+            console.log(input);
+        });
+    </script>
+</body>
+
+</html>
