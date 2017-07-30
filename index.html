@@ -8,7 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <style>
-        div {
+        #chat {
             background-color: lightgray;
             height: 20em;
         }
@@ -21,7 +21,7 @@
         <div id="chat" class="row col-md-8"></div>
         <form action="new-message.php" class="row col-md-8 m-3">
             <label for="message">Message:</label>
-            <input type="text" id="message" placeholder="say hi!" class="form-control">
+            <input type="text" id="message" name="mssge" placeholder="say hi!" class="form-control">
             <input type="submit" id="submit-message" value="send" class="btn btn-primary" />
         </form>
     </div>
@@ -37,7 +37,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        console.log("succes: + xhr.responseText");
+                        console.log("succes: " + xhr.responseText);
                     } else {
                         console.error("unexpected status:" + xhr.status);
                         console.error(xhr.response);
