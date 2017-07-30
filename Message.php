@@ -2,7 +2,7 @@
 
 
 class Message {
-//put your code here
+//creation object message
 
 private $authoroftchat;
 private $topic;
