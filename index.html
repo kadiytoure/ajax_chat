@@ -47,6 +47,23 @@
             xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
             xhr.send("message=" + input.value);
         });
+
+        let messages = [];
+        let sendMessage = document.querySelector("#submit-message");
+        for (let y = 0; y < sendMessage.length; y = y + 1) {
+            let chat = sendMessage[y].children;
+            for (let x = 0; x < chat.length; x = x + 1) {
+                chat[x].addEventListener("click", function(e) {
+                    let m = {
+                        "x": x,
+                        "y": y,
+                    };
+                    console.log(m);
+
+                    e.preventDefault();
+                });
+            }
+        }
     </script>
 </body>
 

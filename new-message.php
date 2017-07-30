@@ -37,7 +37,7 @@ function getContent() {
 function getTime() {
     return $this->time;
 }
-
+/*
 function genererhtmlmessage(){
     echo '<h2>Today<h2>';
     echo '<section>';
@@ -45,5 +45,6 @@ function genererhtmlmessage(){
     echo '<h3> content: </h3><p>' . $this->content . '</p>';
     echo '</section>';
 }
+*/
 
 }
