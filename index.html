@@ -18,9 +18,9 @@
 
 <body class="container">
     <h1 class="text-center">Beautiful chat</h1>
-    <div class="row justify-content-md-center m-5">
-        <div id="chat" class="row col-md-8"></div>
-        <form action="" class="row col-md-8 m-3">
+    <div class="mt-5">
+        <div id="chat" class="col-md-10 offset-md-1"></div>
+        <form action="new-message.php" class="col-md-8 offset -md-2 mt-3">
             <label for="message">Message:</label>
             <input type="text" id="message" name="mssge" placeholder="say hi!" class="form-control">
             <input type="submit" id="submit-message" value="send" class="btn btn-primary" />
@@ -28,62 +28,46 @@
     </div>
     <script>
         "use strict";
-        //Modèle de données
+        //mise en place du modèle de données;
         let messages = [];
-
+        //view
         function display() {
             let div = document.querySelector("#chat");
             div.innerHTML = "";
             for (let m of messages) {
                 let p = document.createElement("p");
-                p.classList.add("col-md-12");
                 p.textContent = m;
                 div.appendChild(p);
             }
         }
         display();
+        //click on #submit-message to send user message using AJAX.
         let submitMessage = document.querySelector("#submit-message");
         submitMessage.addEventListener("click", function(e) {
             e.preventDefault();
             let input = document.querySelector("#message");
-            console.log(input.value);
+            // console.log(input.value);
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "new-message.php");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        console.log("succes: " + xhr.responseText);
-                        messages.push(input.value);
-                        display();
-                    } else {
-                        console.error("unexpected status:" + xhr.status);
-                        console.error(xhr.response);
-                    }
-                }
-            };
-            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = postMessageHandler;
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.send("message=" + input.value);
         });
-
-
-        console.log(messages);
-        /*
-        let sendMessage = document.querySelector("#submit-message");
-        for (let y = 0; y < sendMessage.length; y = y + 1) {
-            let chat = sendMessage[y].children;
-            for (let x = 0; x < chat.length; x = x + 1) {
-                chat[x].addEventListener("click", function(e) {
-                    let m = {
-                        "x": x,
-                        "y": y,
-                    };
-                    console.log(m);
-
-                    e.preventDefault();
-                });
+        //postMessageHandler handles readystatechange from an XHR
+        function postMessageHandler() {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 200) {
+                    let text = document.querySelector("#message").value;
+                    console.log("success:" + this.responseText);
+                    //controller: we update our data and ask for a new display
+                    messages.push(text);
+                    display();
+                } else {
+                    console.error("unexpected status:" + this.status);
+                    console.error(this.response);
+                }
             }
         }
-        */
     </script>
 </body>
 
