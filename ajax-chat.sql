@@ -10,3 +10,4 @@ CREATE TABLE `message` (
     `text` TEXT NOT NULL,
     `timestamp` TIMESTAMP NOT NULL
 );
+
