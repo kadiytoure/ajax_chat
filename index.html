@@ -10,7 +10,8 @@
     <style>
         #chat {
             background-color: lightgray;
-            height: 20em;
+            height: 50vh;
+            overflow-y: scroll
         }
     </style>
 </head>
@@ -19,7 +20,7 @@
     <h1 class="text-center">Beautiful chat</h1>
     <div class="row justify-content-md-center m-5">
         <div id="chat" class="row col-md-8"></div>
-        <form action="new-message.php" class="row col-md-8 m-3">
+        <form action="" class="row col-md-8 m-3">
             <label for="message">Message:</label>
             <input type="text" id="message" name="mssge" placeholder="say hi!" class="form-control">
             <input type="submit" id="submit-message" value="send" class="btn btn-primary" />
@@ -27,6 +28,20 @@
     </div>
     <script>
         "use strict";
+        //Modèle de données
+        let messages = [];
+
+        function display() {
+            let div = document.querySelector("#chat");
+            div.innerHTML = "";
+            for (let m of messages) {
+                let p = document.createElement("p");
+                p.classList.add("col-md-12");
+                p.textContent = m;
+                div.appendChild(p);
+            }
+        }
+        display();
         let submitMessage = document.querySelector("#submit-message");
         submitMessage.addEventListener("click", function(e) {
             e.preventDefault();
@@ -38,6 +53,8 @@
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         console.log("succes: " + xhr.responseText);
+                        messages.push(input.value);
+                        display();
                     } else {
                         console.error("unexpected status:" + xhr.status);
                         console.error(xhr.response);
@@ -48,7 +65,9 @@
             xhr.send("message=" + input.value);
         });
 
-        let messages = [];
+
+        console.log(messages);
+        /*
         let sendMessage = document.querySelector("#submit-message");
         for (let y = 0; y < sendMessage.length; y = y + 1) {
             let chat = sendMessage[y].children;
@@ -64,6 +83,7 @@
                 });
             }
         }
+        */
     </script>
 </body>
 
