@@ -1,50 +1,17 @@
 <?php
-/*
-if (isset($_POST['mssge'])) {
-    echo "hello! " . $_GET['mssge'];
-} else {
-    http_response_code(400);
-    echo 'expects a text parameter';
+
+if (empty($_POST['message'])){
+     http_response_code(400);
+     header('Content-Type: text/plain');
+     echo 'expect a message parameter';
+     exit(1);
 }
-*/
-if (!empty($_POST['message'])){
-echo $_POST['message'];
-} else {
-    http_response_code(400);
-    header('Content-Type: text/plain');
-    echo 'expect a message parameter';
-}
+require_once("model/Message.php");
+$msg = new Message($_POST['message']);
 
-class Message {
-//creation object message
-
-private $content;
-private $time;
-
-
-
-
-function __construct($content, $time) {
-    $this->content = $content;
-    $this->time = $time;
-  
-  
-}
-function getContent() {
-    return $this->content;
-}
-
-function getTime() {
-    return $this->time;
-}
-/*
-function genererhtmlmessage(){
-    echo '<h2>Today<h2>';
-    echo '<section>';
-    echo '<h3> time: </h3><p>' . $this->time . '</p>';
-    echo '<h3> content: </h3><p>' . $this->content . '</p>';
-    echo '</section>';
-}
-*/
-
-}
+// DEBUG: remove when connected to DB.
+header('Content-Type: text/plain');
+var_dump($msg);
+//update connexion 
+$connexion = new PDO('mysql:host=localhost; dbname= ajax_chat;charset=utf8','ajax_chat_user',  'API SQL');
+//chercher condition de sorte que si il y a une ereur celle-ci s'affiche;
