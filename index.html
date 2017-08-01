@@ -21,6 +21,9 @@
     <div class="mt-5">
         <div id="chat" class="col-md-10 offset-md-1"></div>
         <form action="new-message.php" class="col-md-8 offset -md-2 mt-3">
+            <!--TODO: faire un label pseudo et un input-->
+            <label for="pseudo">Pseudo:</label>
+            <input type="text" id="idpseudo" name="pseudo" placeholder="enter your name" class="form-control">
             <label for="message">Message:</label>
             <input type="text" id="message" name="mssge" placeholder="say hi!" class="form-control">
             <input type="submit" id="submit-message" value="send" class="btn btn-primary" />
@@ -46,12 +49,15 @@
         submitMessage.addEventListener("click", function(e) {
             e.preventDefault();
             let input = document.querySelector("#message");
+            let inputpseudo = document.querySelector("#idpseudo");
+            // TODO: on récupere l'input du pseudo 
             // console.log(input.value);
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "new-message.php");
             xhr.onreadystatechange = postMessageHandler;
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("message=" + input.value);
+            // TODO: envoi du message et du pseudo;
+            xhr.send("message=" + input.value + "&pseudo=" + inputpseudo.value);
         });
         //postMessageHandler handles readystatechange from an XHR
         function postMessageHandler() {
