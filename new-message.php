@@ -7,11 +7,33 @@ if (empty($_POST['message'])){
      exit(1);
 }
 require_once("model/Message.php");
-$msg = new Message($_POST['message']);
+$msg = new Message($_POST['message'], "Tata");
 
 // DEBUG: remove when connected to DB.
 header('Content-Type: text/plain');
 var_dump($msg);
 //update connexion 
-$connexion = new PDO('mysql:host=localhost; dbname= ajax_chat;charset=utf8','ajax_chat_user',  'API SQL');
+try  {
+$connexion = new PDO('mysql:host=localhost;dbname=ajax_chat;charset=utf8','ajax_chat_user',  'API SQL');
 //chercher condition de sorte que si il y a une ereur celle-ci s'affiche;
+}
+catch(Exception $msg) {
+    echo "Erreur" ;/*
+        die('Erreur : '.$msg->getText());
+*/
+}
+
+
+$mssge = $connexion->prepare('INSERT INTO `message`(`timestamp`, `text`, `by`) VALUES(:timestamp, :text, :by)');
+$mssge->bindValue('timestamp', $msg->getTimestamp(), PDO::PARAM_STR);
+$mssge->bindValue('text', $msg->getText(), PDO::PARAM_STR);
+$mssge->bindValue('by', $msg->getBy(), PDO::PARAM_STR);
+if ($mssge->execute()){
+   echo 'ton message a bien été envoyé, félicitations!';
+   exit(1);
+}
+echo "message error";
+
+
+
+
