@@ -74,6 +74,21 @@
                 }
             }
         }
+        setInterval(function() {
+            alert("Hello");
+        }, 500);
+
+        function update() {
+            fetch('read-messages.php')
+                .then(function(response) {
+                    return response.text();
+                    console.log(txt);
+                }).catch(function(error) {
+                    console(error.message);
+                })
+            exit(1);
+
+        }
     </script>
 </body>
 
