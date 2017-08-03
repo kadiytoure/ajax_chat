@@ -28,12 +28,13 @@ $array = [];
      $chat = new Message($donnees['text'], $donnees['by'], $donnees['timestamp']);
      //$chat.push.$array;
     $array[] = $chat;
-    echo json_encode($array);
+  
 }
+  $array = json_encode($array);
    echo "<pre>";
    var_dump($array);
    echo "</pre>";
-   exit(1);
+   exit(0);
 //convertir tableau en JSON, appliquer au tableau;
 /*
 } else {
