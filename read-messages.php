@@ -28,6 +28,7 @@ $array = [];
      $chat = new Message($donnees['text'], $donnees['by'], $donnees['timestamp']);
      //$chat.push.$array;
     $array[] = $chat;
+    echo json_encode($array);
 }
    echo "<pre>";
    var_dump($array);
@@ -56,3 +57,4 @@ while ($donnees = $query->fetch()){
 //retournement du tableau en JSON
 $json= json_encode($array);
 ?>*/
+
