@@ -11,6 +11,8 @@ class Message {
             //on peut rajouter l'heure en modifiant la parenthèse;
             $aujourdhui = date("y-m-d") ;
             $this->timestamp = $aujourdhui ;
+        } else {
+            $this->timestamp = $timestamp;
         }
         
         $this->by = $by;
