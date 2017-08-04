@@ -86,7 +86,10 @@
             let json = document.querySelector("#json");
             json.innerHTML = "";
             */
+            //div pour afficher les infos dans le serveur;
             let div = document.querySelector("#list");
+            let chat = document.querySelector("#chat");
+
             div.innerHTML = "";
             //cf function précédente;
             let xhr2 = new XMLHttpRequest();
@@ -97,6 +100,13 @@
 
                         messages = JSON.parse(xhr2.response);
                         //boucle for of qui parcourt les messages et les affiche un par un;
+                        chat.innerHTML = "";
+                        for (let message of messages) {
+                            console.log(message);
+                            document.createElement = "p";
+                            chat.textContent += message.timestamp + " " + message.text + " " + message.by;
+                            chat.appendChild("p");
+                        };
                         display();
                     } else {
                         console.error('unexpected status code:', this.status);
@@ -106,6 +116,7 @@
             xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr2.send(null);
         };
+
 
 
 
