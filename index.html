@@ -103,9 +103,9 @@
                         chat.innerHTML = "";
                         for (let message of messages) {
                             console.log(message);
-                            document.createElement = "p";
-                            chat.textContent += message.timestamp + " " + message.text + " " + message.by;
-                            chat.appendChild("p");
+                            let p = document.createElement("p");
+                            p.textContent += message.timestamp + " " + message.text + " " + message.by;
+                            chat.appendChild(p);
                         };
                         display();
                     } else {
