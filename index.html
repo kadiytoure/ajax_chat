@@ -20,7 +20,7 @@
     <h1 class="text-center"> chat</h1>
     <div class="mt-5">
         <div id="chat" class="col-md-10 offset-md-1"></div>
-        <form action="new-message.php" class="col-md-8 offset -md-2 mt-3">
+        <form action="new-message.php" class="col-md-8 offset -md-2 mt-3" method="post">
             <!--TODO: faire un label pseudo et un input-->
             <label for="pseudo">Pseudo:</label>
             <input type="text" id="idpseudo" name="pseudo" placeholder="enter your name" class="form-control">
@@ -29,18 +29,20 @@
             <input type="submit" id="submit-message" value="send" class="btn btn-primary" />
         </form>
     </div>
+    <div id="list"></div>
     <script>
         "use strict";
         //mise en place du modèle de données;
         let messages = [];
         //view
         function display() {
-            let div = document.querySelector("#chat");
+            let div = document.querySelector("#list");
             div.innerHTML = "";
             for (let m of messages) {
                 let p = document.createElement("p");
                 p.textContent = m;
                 div.appendChild(p);
+
             }
         }
         display();
@@ -75,20 +77,55 @@
             }
         }
         setInterval(function() {
-            alert("Hello");
+            /*update.innerHTML = "";*/
+            update();
         }, 500);
 
         function update() {
-            fetch('read-messages.php')
-                .then(function(response) {
-                    return response.text();
-                    console.log(txt);
-                }).catch(function(error) {
-                    console(error.message);
-                })
-            exit(1);
+            /*
+            let json = document.querySelector("#json");
+            json.innerHTML = "";
+            */
+            let div = document.querySelector("#list");
+            div.innerHTML = "";
+            //cf function précédente;
+            let xhr2 = new XMLHttpRequest();
+            xhr2.open("POST", "read-messages.php");
+            xhr2.onreadystatechange = function() {
+                if (xhr2.readyState === XMLHttpRequest.DONE) {
+                    if (xhr2.status === 200) {
 
-        }
+                        messages = JSON.parse(xhr2.response);
+                        //boucle for of qui parcourt les messages et les affiche un par un;
+                        display();
+                    } else {
+                        console.error('unexpected status code:', this.status);
+                    }
+                }
+            }
+            xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr2.send(null);
+        };
+
+
+
+
+
+
+
+
+
+        /*
+        fetch('read-messages.php')
+            .then(function(response) {
+                return response.text();
+                console.log(text);
+            }).catch(function(error) {
+                console(error.message);
+                exit(1);
+            })
+        display();
+        */
     </script>
 </body>
 

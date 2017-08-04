@@ -1,6 +1,5 @@
 <?php
 include_once 'model/Message.php';
-include_once 'index.html';
 // connexion to database
 try{
     $connexion = new PDO('mysql:host=localhost;dbname=ajax_chat;charset=utf8','ajax_chat_user',  'API SQL');
@@ -30,11 +29,10 @@ $array = [];
     $array[] = $chat;
   
 }
-  $array = json_encode($array);
-   echo "<pre>";
-   var_dump($array);
-   echo "</pre>";
-   exit(0);
+// Avant d'envoyer des données, il est important de préciser
+// quel type de données on envoie. Pour faire ça, il faut utiliser un header HTTP.
+header("Content-Type: application/json");
+echo json_encode($array);
 //convertir tableau en JSON, appliquer au tableau;
 /*
 } else {
