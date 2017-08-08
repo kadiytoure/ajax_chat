@@ -9,7 +9,7 @@ class Message {
         //TODO : si timestamp null : faire une newdate, sinon assigner le timestamp donné
         if( $timestamp == NULL) {
             //on peut rajouter l'heure en modifiant la parenthèse;
-            $aujourdhui = date("y-m-d") ;
+            $aujourdhui = date("Y-m-d H:i:s") ;
             $this->timestamp = $aujourdhui ;
         } else {
             $this->timestamp = $timestamp;
@@ -29,5 +29,6 @@ function getTimestamp() {
 function getBy() {
     return $this->by;
 }
+
 }
 ?>
