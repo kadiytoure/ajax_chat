@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <style>
         #chat {
-            background-color: lightgray;
+            background-color: lightgrey;
             height: 50vh;
             overflow-y: scroll;
         }
@@ -29,7 +29,7 @@
             <!--TODO: faire un label pseudo et un input-->
             <label for="pseudo">Pseudo:</label>
             <input type="text" id="idpseudo" name="pseudo" placeholder="enter your name" class="form-control">
-            <label for="message">Message:</label>
+            <label for="message">Enter your message:</label>
             <input type="text" id="message" name="mssge" placeholder="say hi!" class="form-control">
             <input type="submit" id="submit-message" value="send" class="btn btn-primary" />
         </form>
@@ -112,7 +112,7 @@
                         for (let message of messages) {
                             console.log(message);
                             let p = document.createElement("p");
-                            p.textContent += message.timestamp + " " + message.text + " " + message.by;
+                            p.textContent += message.timestamp + " " + message.by + " : " + message.text;
                             chat.appendChild(p);
                         };
                         display();
@@ -124,27 +124,6 @@
             xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr2.send(null);
         };
-
-
-
-
-
-
-
-
-
-
-        /*
-        fetch('read-messages.php')
-            .then(function(response) {
-                return response.text();
-                console.log(text);
-            }).catch(function(error) {
-                console(error.message);
-                exit(1);
-            })
-        display();
-        */
     </script>
 </body>
 
