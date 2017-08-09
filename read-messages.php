@@ -34,26 +34,6 @@ $array = [];
 header("Content-Type: application/json");
 echo json_encode($array);
 //convertir tableau en JSON, appliquer au tableau;
-/*
-} else {
-echo "message error";
-}
-*/
-/*
 
-
-//request to read all the messages in the message table;
-//recuperation de tout le contenu de la table message;
-$query = $this->mssge->prepare("SELECT * FROM message");
-//chaque entrée est affiché une à une
-
-$query->execute();
-while ($donnees = $query->fetch()){
-     echo $donnees['mssge'] . '<br />';
-}
- echo $donnees['mssge'] . '<br />';
- return $array;
-//retournement du tableau en JSON
-$json= json_encode($array);
-?>*/
+?>
 
