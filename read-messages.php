@@ -27,13 +27,14 @@ $array = [];
      $chat = new Message($donnees['text'], $donnees['by'], $donnees['timestamp']);
      //$chat.push.$array;
     $array[] = $chat;
+
   
-}
+ }
 // Avant d'envoyer des données, il est important de préciser
 // quel type de données on envoie. Pour faire ça, il faut utiliser un header HTTP.
 header("Content-Type: application/json");
 echo json_encode($array);
 //convertir tableau en JSON, appliquer au tableau;
-
+   
 ?>
 

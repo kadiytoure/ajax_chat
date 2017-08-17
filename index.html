@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chat</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
         #chat {
             background-color: lightgrey;
             opacity: 0.5;
@@ -20,8 +22,32 @@
             background-size: cover;
         }
         
-        .label {
+        form label {
             font-size: 4em;
+            color: black;
+            text-shadow: 1px 3px 14px #fff;
+        }
+        
+        h1 {
+            text-shadow: 1px 3px 14px #fff;
+            font-family: 'Roboto', sans-serif;
+            font-size: 50px;
+            color: black;
+        }
+        
+        #idpseudo {
+            color: black;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        #message {
+            color: black;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        p {
+            color: black;
+            font-family: 'Roboto', sans-serif;
         }
     </style>
 </head>
@@ -46,14 +72,14 @@
         let messages = [];
         //view
         function display() {
-            let div = document.querySelector("#list");
-            div.innerHTML = "";
-            for (let m of messages) {
-                let p = document.createElement("p");
-                p.textContent = m;
-                div.appendChild(p);
 
-            }
+            chat.innerHTML = "";
+            for (let message of messages) {
+                console.log(message);
+                let p = document.createElement("p");
+                p.textContent += message.timestamp + " " + message.by + " : " + message.text;
+                chat.appendChild(p);
+            };
 
         }
         display();
@@ -90,17 +116,14 @@
         setInterval(function() {
             /*update.innerHTML = "";*/
             update();
-        }, 500);
+        }, 2000);
 
         function update() {
-            /*
-            let json = document.querySelector("#json");
-            json.innerHTML = "";
-            */
+
             //div pour afficher les infos dans le serveur;
             let div = document.querySelector("#list");
             let chat = document.querySelector("#chat");
-
+            //chat.innerHTML = "";
             div.innerHTML = "";
             //HTTP request to read-messages.php;
 
@@ -110,16 +133,10 @@
             xhr2.onreadystatechange = function() {
                 if (xhr2.readyState === XMLHttpRequest.DONE) {
                     if (xhr2.status === 200) {
+
                         //response into a JS object;
                         messages = JSON.parse(xhr2.response);
-                        //boucle for of qui parcourt les messages et les affiche un par un;
-                        chat.innerHTML = "";
-                        for (let message of messages) {
-                            console.log(message);
-                            let p = document.createElement("p");
-                            p.textContent += message.timestamp + " " + message.by + " : " + message.text;
-                            chat.appendChild(p);
-                        };
+
                         display();
                     } else {
                         console.error('unexpected status code:', this.status);
