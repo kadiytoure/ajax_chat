@@ -2,7 +2,7 @@
 include_once 'model/Message.php';
 // connexion to database
 try{
-    $connexion = new PDO('mysql:host=localhost;dbname=ajax_chat;charset=utf8','ajax_chat_user',  'API SQL');
+    $connexion = new PDO('mysql:host=localhost;dbname=kadiy_ajax_chat;charset=utf8','kadiy',  'kadiy');
 }
 catch(Exception $msg){
     echo  "Erreur";
