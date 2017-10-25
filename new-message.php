@@ -14,7 +14,7 @@ header('Content-Type: text/plain');
 var_dump($msg);
 //update connexion 
 try  {
-$connexion = new PDO('mysql:host=localhost;dbname=kadiy_ajax_chat;charset=utf8','kadiy',  'kadiy');
+$connexion = new PDO('mysql:host=localhost;dbname=ktoure_ajax_chat;charset=utf8','ktoure',  'ktoure');
 //chercher condition de sorte que si il y a une ereur celle-ci s'affiche;
 }
 catch(Exception $msg) {

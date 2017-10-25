@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS `kadiy_ajax_chat`;
 CREATE DATABASE `kadiy_ajax_chat` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 DROP USER 'ajax_chat_user'@'localhost';
 CREATE USER 'kadiy'@'localhost' IDENTIFIED BY 'kadiy';
-GRANT ALL PRIVILEGES ON `kadiy_ajax_chat`.* TO 'kadiy'@'localhost';
+GRANT ALL PRIVILEGES ON `ktoure_ajax_chat`.* TO 'ktoure'@'localhost';
 USE `kadiy_ajax_chat`;
 
 CREATE TABLE `message` (
