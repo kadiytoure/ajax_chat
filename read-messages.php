@@ -6,10 +6,7 @@ $infoDb = parse_ini_file('conf.ini');
 // connexion to database
 try{
     $connexion = new PDO('mysql:host=localhost;dbname='.$infoDb['dbname'].';charset=utf8',$infoDb['username'],  $infoDb['password']);
-}
-catch(Exception $msg){
-    echo  "Erreur";
-}
+
 //après catch, fin de la partie qui consiste à se connecter à la base de données;
 
 // requête pour afficher et lire tout le contenu de la table message
@@ -38,6 +35,9 @@ $array = [];
 header("Content-Type: application/json");
 echo json_encode($array);
 //convertir tableau en JSON, appliquer au tableau;
-   
+   }
+catch(Exception $msg){
+    var_dump($msg);
+}
 ?>
 

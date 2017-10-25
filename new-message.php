@@ -27,9 +27,9 @@ catch(Exception $msg) {
 
 
 $mssge = $connexion->prepare('INSERT INTO message(`timestamp`, `text`, `by`) VALUES(:timestamp, :text, :by)');
-$mssge->bindValue('timestamp', $msg->getTimestamp(), PDO::PARAM_STR) ;
-$mssge->bindValue('text', $msg->getText(), PDO::PARAM_STR);
-$mssge->bindValue('by', $msg->getBy(), PDO::PARAM_STR);
+$mssge->bindValue('timestamp', $msg->timestamp, PDO::PARAM_STR) ;
+$mssge->bindValue('text', $msg->text, PDO::PARAM_STR);
+$mssge->bindValue('by', $msg->by, PDO::PARAM_STR);
 if ($mssge->execute()){
    echo 'ton message a bien été envoyé, félicitations!';
    exit(1);

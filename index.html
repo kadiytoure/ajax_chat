@@ -75,7 +75,7 @@
 
             chat.innerHTML = "";
             for (let message of messages) {
-                console.log(message);
+                // console.log(message);
                 let p = document.createElement("p");
                 p.textContent += message.timestamp + " " + message.by + " : " + message.text;
                 chat.appendChild(p);
