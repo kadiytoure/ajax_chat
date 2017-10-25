@@ -14,7 +14,9 @@ header('Content-Type: text/plain');
 var_dump($msg);
 //update connexion 
 try  {
-$connexion = new PDO('mysql:host=localhost;dbname=ktoure_ajax_chat;charset=utf8','ktoure',  'ktoure');
+
+$infoDb = parse_ini_file('conf.ini');
+$connexion = new PDO('mysql:host=localhost;dbname='.$infoDb['dbname'].';charset=utf8',$infoDb['username'],  $infoDb['password']);
 //chercher condition de sorte que si il y a une ereur celle-ci s'affiche;
 }
 catch(Exception $msg) {
