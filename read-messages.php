@@ -1,8 +1,11 @@
 <?php
 include_once 'model/Message.php';
+
+$infoDb = parse_ini_file('conf.ini');
+
 // connexion to database
 try{
-    $connexion = new PDO('mysql:host=localhost;dbname=ktoure_ajax_chat;charset=utf8','ktoure',  'ktoure');
+    $connexion = new PDO('mysql:host=localhost;dbname='.$infoDb['dbname'].';charset=utf8',$infoDb['username'],  $infoDb['password']);
 }
 catch(Exception $msg){
     echo  "Erreur";
