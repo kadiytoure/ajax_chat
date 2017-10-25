@@ -18,17 +18,7 @@ class Message {
         $this->by = $by;
     }
 
-function getText() {
-    return $this->text;
-}
 
-function getTimestamp() {
-    return $this->timestamp;
-}
-
-function getBy() {
-    return $this->by;
-}
 
 }
 ?>
